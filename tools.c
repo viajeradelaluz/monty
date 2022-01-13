@@ -36,14 +36,14 @@ FILE *parse_line(FILE *monty_data)
 	while (fgets(buffer, sizeof(buffer), monty_data) != NULL)
 	{
 		token = strtok(buffer, DELIM);
-		get_opcode = get_operation(token);
-		if (!get_opcode)
+		if (!token)
 		{
-			free_stack(head), fclose(monty_data);
-			fprintf(stderr, "L %d: unknown instruction %s", line_number, token);
-			exit(EXIT_FAILURE);
+			line_number++;
+			continue;
 		}
 
+		get_opcode = get_operation(token);
+		UNKNOWN_OPCODE(head, monty_data, line_number, token, get_opcode);
 		get_opcode(&head, line_number);
 
 		line_number++;

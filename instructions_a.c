@@ -13,7 +13,7 @@ void push(stack_t **head, unsigned int line_number)
 
 	token = strtok(NULL, DELIM);
 
-	if (str_isdigit(token) || head)
+	if (str_isdigit(token))
 	{
 		data_node = atoi(token);
 		add_new_node(head, data_node);
