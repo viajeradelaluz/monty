@@ -65,6 +65,9 @@ int str_isdigit(char *string)
 	if (!string)
 		return (0);
 
+	if (string[i] == '-')
+		i++;
+
 	while (string[i])
 	{
 		if (isdigit(string[i]) == 0)
