@@ -1,7 +1,6 @@
 #ifndef _MONTY_LIB_
 #define _MONTY_LIB_
 
-
 /* LIBS */
 
 #include <unistd.h>
@@ -13,16 +12,24 @@
 #include <string.h>
 #include <ctype.h>
 
-
 /* MACROS AND EXTERN VARS */
 
 #define FO_RDONLY "r"
 #define DELIM " \n\t"
-#define ERROR_PUSH "L %d: usage: push integer\n"
-#define ERROR_PP "L %d: can't %s an empty stack\n"
-#define ERROR_SA "L %d: can't %s stack too short\n"
+#define ERROR_PUSH "L%d: usage: push integer\n"
+#define ERROR_PP "L%d: can't %s an empty stack\n"
+#define ERROR_SA "L%d: can't %s stack too short\n"
 extern FILE *monty_data;
 
+#define UNKNOWN_OPCODE(HEAD, MONTY_DATA, LINE_NUMBER, TOKEN, GET_OPCODE)\
+do {\
+	if (!GET_OPCODE)\
+	{\
+		free_stack(HEAD), fclose(MONTY_DATA);\
+		fprintf(stderr, "L%d: unknown instruction %s\n", LINE_NUMBER, TOKEN);\
+		exit(EXIT_FAILURE);\
+	} \
+} while (0)
 
 /* STRUCTS DEFINITIONS */
 
@@ -54,13 +61,11 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-
 /* FUNCTIONS IN TOOLS */
 
 FILE *open_file(char *monty_file, char *argv[]);
 FILE *parse_line(FILE *monty_data);
 int str_isdigit(char *string);
-
 
 /* FUNCTIONS IN INSTRUCTIONS A, B */
 
@@ -72,12 +77,10 @@ void swap(stack_t **head, unsigned int line_number);
 void add(stack_t **head, unsigned int line_number);
 void nop(stack_t **head, unsigned int line_number);
 
-
 /* FUNCTIONS IN STACK_OPERATIONS */
 
 stack_t *add_new_node(stack_t **head, int data_node);
 void free_stack(stack_t *head);
-
 
 /* FUNCTION IN GET_OPCODE */
 
