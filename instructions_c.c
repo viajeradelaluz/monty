@@ -13,7 +13,7 @@ void sub(stack_t **head, unsigned int line_number)
 		free_stack(*head), fclose(monty_data);
 		exit(EXIT_FAILURE);
 	}
-	(*head)->next->n = (*head)->n - (*head)->next->n;
+	(*head)->next->n -= (*head)->n;
 	pop(head, line_number);
 }
 
@@ -38,7 +38,7 @@ void _div(stack_t **head, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 
-	(*head)->next->n = (*head)->n / (*head)->next->n;
+	(*head)->next->n /= (*head)->n;
 	pop(head, line_number);
 }
 
@@ -55,7 +55,7 @@ void mul(stack_t **head, unsigned int line_number)
 		free_stack(*head), fclose(monty_data);
 		exit(EXIT_FAILURE);
 	}
-	(*head)->next->n = (*head)->n * (*head)->next->n;
+	(*head)->next->n *= (*head)->n;
 	pop(head, line_number);
 }
 
@@ -80,6 +80,6 @@ void mod(stack_t **head, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 
-	(*head)->next->n = (*head)->n % (*head)->next->n;
+	(*head)->next->n %= (*head)->n;
 	pop(head, line_number);
 }
