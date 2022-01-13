@@ -16,6 +16,9 @@ void (*get_operation(char *opcode))(stack_t **stack, unsigned int line_number)
 
 	int i = 0;
 
+	if (!opcode)
+		return (NULL);
+
 	while (op_list[i].opcode)
 	{
 		if (strcmp(opcode, op_list[i].opcode) == 0)

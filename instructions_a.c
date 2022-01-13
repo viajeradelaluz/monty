@@ -20,6 +20,7 @@ void push(stack_t **head, unsigned int line_number)
 	}
 	else
 	{
+		free_stack(*head), fclose(monty_data);
 		fprintf(stderr, ERROR_PUSH, line_number);
 		exit(EXIT_FAILURE);
 	}
