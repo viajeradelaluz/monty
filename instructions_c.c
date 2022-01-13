@@ -18,7 +18,7 @@ void sub(stack_t **head, unsigned int line_number)
 }
 
 /**
- * div - Divide the values of two nodes.
+ * _div - Divide the values of two nodes.
  * @head: head of the double linked list.
  * @line_number: number of the lines.
  */
