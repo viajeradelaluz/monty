@@ -12,7 +12,6 @@ FILE *open_file(char *monty_file, char *argv[])
 	monty_data = fopen(monty_file, FO_RDONLY);
 	if (!monty_data)
 	{
-		fclose(monty_data);
 		fprintf(stderr, "Error: Can't open file %s\n", monty_file);
 		exit(EXIT_FAILURE);
 	}
