@@ -13,6 +13,7 @@ stack_t *add_new_node(stack_t **head, int data_node)
 	new_node = malloc(sizeof(stack_t));
 	if (!new_node)
 	{
+		free_stack(*head), fclose(monty_data);
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
