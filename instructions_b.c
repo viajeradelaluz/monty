@@ -31,9 +31,17 @@ void pop(stack_t **head, unsigned int line_number)
  */
 void swap(stack_t **head, unsigned int line_number)
 {
-	(void)(**head);
-	(void)(line_number);
-	printf("Hello, function in progress: swap\n");
+	int node_n = 0;
+
+	if (!head || !*head || !(*head)->next)
+	{
+		fprintf(stderr, ERROR_SWAP, line_number);
+		free_stack(*head), fclose(monty_data);
+		exit(EXIT_FAILURE);
+	}
+	node_n = (*head)->n;
+	(*head)->n = (*head)->next->n;
+	(*head)->next->n = node_n;
 }
 /**
  * add - add nodes
