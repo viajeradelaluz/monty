@@ -12,6 +12,7 @@
 #include <string.h>
 #include <ctype.h>
 
+
 /* MACROS AND EXTERN VARS */
 
 #define FO_RDONLY "r"
@@ -20,7 +21,8 @@
 #define ERROR_PINT "L%d: can't pint, stack empty\n"
 #define ERROR_POP "L%d: can't pop an empty stack\n"
 #define ERROR_SWAP "L%d: can't swap, stack too short\n"
-#define ERROR_ADD "L%d: can't add, stack too short\n"
+#define ERROR_MATH "L%d: can't %s, stack too short\n"
+#define ERROR_ZERO "L%d: division by zero\n"
 extern FILE *monty_data;
 
 #define UNKNOWN_OPCODE(HEAD, MONTY_DATA, LINE_NUMBER, TOKEN, GET_OPCODE)\
@@ -32,6 +34,7 @@ do {\
 		exit(EXIT_FAILURE);\
 	} \
 } while (0)
+
 
 /* STRUCTS DEFINITIONS */
 
@@ -63,13 +66,15 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+
 /* FUNCTIONS IN TOOLS */
 
 FILE *open_file(char *monty_file, char *argv[]);
 FILE *parse_line(FILE *monty_data);
 int str_isdigit(char *string);
 
-/* FUNCTIONS IN INSTRUCTIONS A, B */
+
+/* FUNCTIONS IN INSTRUCTIONS A, B, C */
 
 void push(stack_t **head, unsigned int line_number);
 void pall(stack_t **head, unsigned int line_number);
@@ -78,11 +83,17 @@ void pop(stack_t **head, unsigned int line_number);
 void swap(stack_t **head, unsigned int line_number);
 void add(stack_t **head, unsigned int line_number);
 void nop(stack_t **head, unsigned int line_number);
+void mod(stack_t **head, unsigned int line_number);
+void div(stack_t **head, unsigned int line_number);
+void sub(stack_t **head, unsigned int line_number);
+void mul(stack_t **head, unsigned int line_number);
+
 
 /* FUNCTIONS IN STACK_OPERATIONS */
 
 stack_t *add_new_node(stack_t **head, int data_node);
 void free_stack(stack_t *head);
+
 
 /* FUNCTION IN GET_OPCODE */
 
