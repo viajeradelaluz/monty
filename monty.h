@@ -23,6 +23,7 @@
 #define ERROR_SWAP "L%d: can't swap, stack too short\n"
 #define ERROR_MATH "L%d: can't %s, stack too short\n"
 #define ERROR_ZERO "L%d: division by zero\n"
+#define ERROR_PCHAR "L%d: can't pchar, %s\n"
 extern FILE *monty_data;
 
 #define UNKNOWN_OPCODE(HEAD, MONTY_DATA, LINE_NUMBER, TOKEN, GET_OPCODE)\
@@ -87,6 +88,7 @@ void mod(stack_t **head, unsigned int line_number);
 void _div(stack_t **head, unsigned int line_number);
 void sub(stack_t **head, unsigned int line_number);
 void mul(stack_t **head, unsigned int line_number);
+void pchar(stack_t **head, unsigned int line_number);
 
 
 /* FUNCTIONS IN STACK_OPERATIONS */

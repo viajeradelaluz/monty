@@ -83,3 +83,27 @@ void mod(stack_t **head, unsigned int line_number)
 	(*head)->next->n %= (*head)->n;
 	pop(head, line_number);
 }
+
+/**
+ * pchar - Print the char at he top of the stack.
+ * @head: head of the double linked list.
+ * @line_number: number of the lines.
+ */
+void pchar(stack_t **head, unsigned int line_number)
+{
+	if (!head || !*head)
+	{
+		fprintf(stderr, ERROR_PCHAR, line_number, "stack empty");
+		free_stack(*head), fclose(monty_data);
+		exit(EXIT_FAILURE);
+	}
+
+	if ((*head)->n >= 33 && (*head)->n <= 126)
+		fprintf(stdout, "%c\n", (*head)->n);
+	else
+	{
+		fprintf(stderr, ERROR_PCHAR, line_number, "value out of range");
+		free_stack(*head), fclose(monty_data);
+		exit(EXIT_FAILURE);
+	}
+}

@@ -10,7 +10,8 @@ void (*get_operation(char *opcode))(stack_t **stack, unsigned int line_number)
 	instruction_t op_list[] = {
 		{"push", push}, {"pall", pall}, {"pint", pint}, {"pop", pop},
 		{"swap", swap}, {"add", add}, {"sub", sub}, {"div", _div},
-		{"mul", mul}, {"mod", mod}, {"#", nop}, {"nop", nop}, {NULL, NULL}
+		{"mul", mul}, {"mod", mod}, {"pchar", pchar}, {"#", nop},
+		{"nop", nop}, {NULL, NULL}
 	};
 
 	int i = 0;
