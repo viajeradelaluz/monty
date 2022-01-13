@@ -1,14 +1,16 @@
 #include "monty.h"
 
 /**
+ * main - Program to interprete the command-line.
+ * @argc: number of arguments passed to main.
+ * @argv: arguments passed to main.
  *
- *
+ * Return: always 0 on success, otherwise EXIT_FAILURE.
  */
 int main(int argc, char *argv[])
 {
-	char *monty_file = NULL, *token = NULL;
-	FILE *monty_opened = NULL;
-	char buffer[BUFSIZ];
+	char *monty_file = NULL;
+	FILE *monty_data = NULL;
 
 	/*Checks number of arguments*/
 	if (argc != 2)
@@ -18,25 +20,9 @@ int main(int argc, char *argv[])
 	}
 
 	/* Open and read the monty file */
-	monty_file = argv[1];
-	monty_opened = fopen(monty_file, FO_RDONLY);
-	if (!monty_opened)
-	{
-		fprintf(stderr, "Error: Can't open file %s", monty_file);
-		exit(EXIT_FAILURE);
-	}
+	monty_data = open_file(monty_file, argv);
+	parse_line(monty_data);
 
-	/* Get and parse the lines of the monty file */
-	while (fgets(buffer, sizeof(buffer), monty_opened) != NULL)
-	{
-		token = strtok(buffer, " \n\t");
-		while (token != NULL)
-		{
-			fprintf(stdout, "%s", token);
-			token = strtok(NULL, " \n\t");
-		}
-	}
-
-	fclose(monty_opened);
+	fclose(monty_data);
 	return (0);
 }
