@@ -51,7 +51,12 @@ void swap(stack_t **head, unsigned int line_number)
  */
 void add(stack_t **head, unsigned int line_number)
 {
-	(void)(**head);
-	(void)(line_number);
-	printf("Hello, function in progress: add\n");
+	if (!head || !*head || !(*head)->next)
+	{
+		fprintf(stderr, ERROR_ADD, line_number);
+		free_stack(*head), fclose(monty_data);
+		exit(EXIT_FAILURE);
+	}
+	(*head)->next->n = (*head)->n + (*head)->next->n;
+	pop(head, line_number);
 }

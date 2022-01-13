@@ -20,6 +20,7 @@
 #define ERROR_PINT "L%d: can't pint, stack empty\n"
 #define ERROR_POP "L%d: can't pop an empty stack\n"
 #define ERROR_SWAP "L%d: can't swap, stack too short\n"
+#define ERROR_ADD "L%d: can't add, stack too short\n"
 extern FILE *monty_data;
 
 #define UNKNOWN_OPCODE(HEAD, MONTY_DATA, LINE_NUMBER, TOKEN, GET_OPCODE)\
