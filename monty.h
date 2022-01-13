@@ -17,7 +17,8 @@
 #define FO_RDONLY "r"
 #define DELIM " \n\t"
 #define ERROR_PUSH "L%d: usage: push integer\n"
-#define ERROR_PP "L%d: can't %s an empty stack\n"
+#define ERROR_PINT "L%d: can't pint, stack empty\n"
+#define ERROR_POP "L%d: can't pop an empty stack\n"
 #define ERROR_SA "L%d: can't %s stack too short\n"
 extern FILE *monty_data;
 

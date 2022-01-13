@@ -56,9 +56,13 @@ void pall(stack_t **head, unsigned int line_number)
  */
 void pint(stack_t **head, unsigned int line_number)
 {
-	(void)(**head);
-	(void)(line_number);
-	printf("Hello, function in progress: pint\n");
+	if (!head || !*head)
+	{
+		fprintf(stderr, ERROR_PINT, line_number);
+		free_stack(*head), fclose(monty_data);
+		exit(EXIT_FAILURE);
+	}
+	fprintf(stdout, "%d\n", (*head)->n);
 }
 
 /**
