@@ -1,5 +1,6 @@
 #include "monty.h"
 
+FILE *monty_data = NULL;
 /**
  * main - Program to interprete the command-line.
  * @argc: number of arguments passed to main.
@@ -10,7 +11,6 @@
 int main(int argc, char *argv[])
 {
 	char *monty_file = NULL;
-	FILE *monty_data = NULL;
 
 	/*Checks number of arguments*/
 	if (argc != 2)

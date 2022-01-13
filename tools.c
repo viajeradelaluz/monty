@@ -8,12 +8,11 @@
  */
 FILE *open_file(char *monty_file, char *argv[])
 {
-	FILE *monty_data = NULL;
-
 	monty_file = argv[1];
 	monty_data = fopen(monty_file, FO_RDONLY);
 	if (!monty_data)
 	{
+		fclose(monty_data);
 		fprintf(stderr, "Error: Can't open file %s\n", monty_file);
 		exit(EXIT_FAILURE);
 	}
@@ -26,7 +25,7 @@ FILE *open_file(char *monty_file, char *argv[])
  * @monty_data: monty file to parse.
  * Return: last line number on the monty file opened.
  */
-int parse_line(FILE *monty_data)
+FILE *parse_line(FILE *monty_data)
 {
 	char *token = NULL;
 	char buffer[BUFSIZ];
@@ -40,6 +39,7 @@ int parse_line(FILE *monty_data)
 		get_opcode = get_operation(token);
 		if (!get_opcode)
 		{
+			free_stack(head), fclose(monty_data);
 			fprintf(stderr, "L %d: unknown instruction %s", line_number, token);
 			exit(EXIT_FAILURE);
 		}
@@ -48,7 +48,9 @@ int parse_line(FILE *monty_data)
 
 		line_number++;
 	}
-	return (line_number);
+	free_stack(head);
+
+	return (monty_data);
 }
 
 /**

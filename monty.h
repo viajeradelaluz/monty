@@ -21,23 +21,10 @@
 #define ERROR_PUSH "L %d: usage: push integer\n"
 #define ERROR_PP "L %d: can't %s an empty stack\n"
 #define ERROR_SA "L %d: can't %s stack too short\n"
+extern FILE *monty_data;
 
 
 /* STRUCTS DEFINITIONS */
-
-
-/**
- * struct instruction_s - opcode and its function
- * @opcode: the opcode
- * @f: function to handle the opcode
- * Description: opcode and its function
- * for stack, queues, LIFO, FIFO
- */
-typedef struct instruction_s
-{
-	char *opcode;
-	void (*f)(stack_t **stack, unsigned int line_number);
-} instruction_t;
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -54,11 +41,24 @@ typedef struct stack_s
 	struct stack_s *next;
 } stack_t;
 
+/**
+ * struct instruction_s - opcode and its function
+ * @opcode: the opcode
+ * @f: function to handle the opcode
+ * Description: opcode and its function
+ * for stack, queues, LIFO, FIFO
+ */
+typedef struct instruction_s
+{
+	char *opcode;
+	void (*f)(stack_t **stack, unsigned int line_number);
+} instruction_t;
+
 
 /* FUNCTIONS IN TOOLS */
 
 FILE *open_file(char *monty_file, char *argv[]);
-int parse_line(FILE *monty_data);
+FILE *parse_line(FILE *monty_data);
 int str_isdigit(char *string);
 
 
@@ -76,6 +76,7 @@ void nop(stack_t **head, unsigned int line_number);
 /* FUNCTIONS IN STACK_OPERATIONS */
 
 stack_t *add_new_node(stack_t **head, int data_node);
+void free_stack(stack_t *head);
 
 
 /* FUNCTION IN GET_OPCODE */
