@@ -7,21 +7,41 @@
  */
 void pstr(stack_t **head, unsigned int line_number)
 {
-	stack_t *node = NULL;
+	stack_t *current = NULL;
 	(void)line_number;
 
-	node = *head;
-	if (!node)
-		fprintf(stderr, "\n");
-
-	while (node)
+	current = *head;
+	if (!current)
 	{
-		if (node->n >= 33 && node->n <= 126)
-			fprintf(stdout, "%c", node->n);
+		fprintf(stderr, "\n");
+		return;
+	}
+	while (current)
+	{
+		if (current->n >= 33 && current->n <= 126)
+			fprintf(stdout, "%c", current->n);
 		else
 			break;
 
-		node = node->next;
+		current = current->next;
 	}
 	fprintf(stdout, "\n");
 }
+/**
+ * rotl - The top element of the stack becomes the last one.
+ * @head: head of the double linked list.
+ * @line_number: number of the lines.
+ */
+void rotl(stack_t **head, unsigned int line_number)
+{
+	stack_t *current = NULL;
+	(void)line_number;
+
+	current = *head;
+	if (!current)
+		return;
+	add_node_end(head, current->n);
+	pop(head, line_number);
+	current = NULL;
+}
+

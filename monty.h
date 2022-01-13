@@ -90,11 +90,14 @@ void sub(stack_t **head, unsigned int line_number);
 void mul(stack_t **head, unsigned int line_number);
 void pchar(stack_t **head, unsigned int line_number);
 void pstr(stack_t **head, unsigned int line_number);
+void rotl(stack_t **head, unsigned int line_number);
+
 
 
 /* FUNCTIONS IN STACK_OPERATIONS */
 
 stack_t *add_new_node(stack_t **head, int data_node);
+stack_t *add_node_end(stack_t **head, int data_node);
 void free_stack(stack_t *head);
 
 
