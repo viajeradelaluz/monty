@@ -27,6 +27,7 @@ void pstr(stack_t **head, unsigned int line_number)
 	}
 	fprintf(stdout, "\n");
 }
+
 /**
  * rotl - The top element of the stack becomes the last one.
  * @head: head of the double linked list.
@@ -45,3 +46,26 @@ void rotl(stack_t **head, unsigned int line_number)
 	current = NULL;
 }
 
+/**
+ * rotr - Rotates the stack to the bottom.
+ * @head: head of the double linked list.
+ * @line_number: number of the lines.
+ */
+void rotr(stack_t **head, unsigned int line_number)
+{
+	stack_t *node = NULL;
+	(void)line_number;
+
+	node = *head;
+	if (!node || !node->next)
+		return;
+
+	while (node->next)
+		node = node->next;
+
+	node->next = *head;
+	node->prev->next = NULL;
+	node->prev = NULL;
+	*head = node;
+	(*head)->next->prev = *head;
+}
