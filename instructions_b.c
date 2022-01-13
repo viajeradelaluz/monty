@@ -8,9 +8,19 @@
  */
 void pop(stack_t **head, unsigned int line_number)
 {
-	(void)(**head);
-	(void)(line_number);
-	printf("Hello, function in progress: pop\n");
+	stack_t *node = NULL;
+
+	if (!head || !*head)
+	{
+		fprintf(stderr, ERROR_POP, line_number);
+		free_stack(*head), fclose(monty_data);
+		exit(EXIT_FAILURE);
+	}
+	node = *head;
+	*head = (*head)->next;
+	free(node);
+	if (*head)
+		(*head)->prev = NULL;
 }
 
 /**
