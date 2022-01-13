@@ -35,7 +35,7 @@ FILE *parse_line(FILE *monty_data)
 	while (fgets(buffer, sizeof(buffer), monty_data) != NULL)
 	{
 		token = strtok(buffer, DELIM);
-		if (!token)
+		if (!token || token[0] == '#')
 		{
 			line_number++;
 			continue;
