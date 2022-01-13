@@ -13,7 +13,7 @@ void pstr(stack_t **head, unsigned int line_number)
 	current = *head;
 	if (!current)
 	{
-		fprintf(stderr, "\n");
+		fprintf(stdout, "\n");
 		return;
 	}
 	while (current)
