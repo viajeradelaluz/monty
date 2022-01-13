@@ -22,7 +22,7 @@ void sub(stack_t **head, unsigned int line_number)
  * @head: head of the double linked list.
  * @line_number: number of the lines.
  */
-void div(stack_t **head, unsigned int line_number)
+void _div(stack_t **head, unsigned int line_number)
 {
 	if (!head || !*head || !(*head)->next)
 	{

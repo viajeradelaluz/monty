@@ -11,7 +11,7 @@ void (*get_operation(char *opcode))(stack_t **stack, unsigned int line_number)
 		{"push", push}, {"pall", pall},
 		{"pint", pint}, {"pop", pop},
 		{"swap", swap}, {"add", add},
-		{"sub", sub}, {"div", div},
+		{"sub", sub}, {"div", _div},
 		{"mul", mul}, {"mod", mod},
 		{"nop", nop}, {NULL, NULL}
 	};
