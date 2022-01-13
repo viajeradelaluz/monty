@@ -53,7 +53,7 @@ void add(stack_t **head, unsigned int line_number)
 {
 	if (!head || !*head || !(*head)->next)
 	{
-		fprintf(stderr, ERROR_ADD, line_number);
+		fprintf(stderr, ERROR_MATH, line_number, "add");
 		free_stack(*head), fclose(monty_data);
 		exit(EXIT_FAILURE);
 	}
