@@ -37,6 +37,9 @@ void pall(stack_t **head, unsigned int line_number)
 	stack_t *current = NULL;
 	(void)(line_number);
 
+	if (!head)
+		return;
+
 	current = *head;
 	while (current)
 	{
