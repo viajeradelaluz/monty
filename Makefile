@@ -1,12 +1,10 @@
-#	Compliation Rules 
+#	Compilation Rules 
 #	gcc -Wall -Werror -pedantic -Wextro -g -std=gnu89
 
 CC = gcc
 CFLAG = -Wall -Werror -pedantic -Wextra -std=gnu89 -ggdb
 
 monty:
-	$(CC) $(CFLAG) -g *.c -o monty_alpha_v0.1
-monty_unclean:
-	$(CC) -g *.c -o monty_alpha_v0.1
+	$(CC) $(CFLAG) -g *.h *.c -o monty
 clean:
-	rm -r monty_alpha_v0.1
+	rm -r monty
